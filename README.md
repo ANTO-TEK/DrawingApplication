@@ -1,4 +1,4 @@
-# SE_DrawingApplication - Group 01
+# DrawingApplication - Group 01
 
 ## Group Information 
   
