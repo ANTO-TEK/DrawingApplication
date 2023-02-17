@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #000036;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unisa.diem.se.drawingapp.controller.FXMLDocumentController">
+   <top>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar style="-fx-background-color: #000036;" VBox.vgrow="SOMETIMES">
+              <menus>
+                <Menu mnemonicParsing="false" styleClass="fileMenuLabel" text="File">
+                  <items>
+                    <MenuItem fx:id="itemNew" mnemonicParsing="false" onAction="#newHandler" text="Clear all" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveToFileHandler" text="Save to file" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadFromFileHandler" text="Load from file" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitHandler" text="Exit " />
+                  </items>
+                </Menu>
+              </menus>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </MenuBar>
+            <ToolBar fx:id="toolBarItems" prefHeight="100.0" style="-fx-background-color: #2e2e2e; -fx-background-radius: 10;">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+               <items>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="undoButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#undoHandler" prefHeight="45.0" prefWidth="45.0" styleClass="custom-button">
+                                 <tooltip>
+                                    <Tooltip text="Undo" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/undo.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteHandler" prefHeight="45.0" prefWidth="45.0" styleClass="custom-button">
+                                 <tooltip>
+                                    <Tooltip text="Delete" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/bin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <RadioButton fx:id="selectToolButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectionToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER">
+                                 <tooltip>
+                                    <Tooltip text="Select" />
+                                 </tooltip>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="g1" />
+                                 </toggleGroup>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                                       <image>
+                                          <Image url="@assets/cursor.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <Label text="Commands" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets left="101.0" />
+                     </opaqueInsets>
+                  </Separator>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="13.0">
+                           <children>
+                              <RadioButton fx:id="lineToolButton" mnemonicParsing="false" onAction="#lineToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER" toggleGroup="$g1">
+                                 <tooltip>
+                                    <Tooltip text="Line" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                                       <image>
+                                          <Image url="@assets/diagonal-line.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                              <RadioButton fx:id="rectangleToolButton" mnemonicParsing="false" onAction="#rectangleToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER" toggleGroup="$g1">
+                                 <tooltip>
+                                    <Tooltip text="Rectangle" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                                       <image>
+                                          <Image url="@assets/rectangle.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                              <RadioButton fx:id="ellipseToolButton" mnemonicParsing="false" onAction="#ellipseToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER" toggleGroup="$g1">
+                                 <tooltip>
+                                    <Tooltip text="Ellipse" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="8.0">
+                                       <image>
+                                          <Image url="@assets/ellipse.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                              <RadioButton fx:id="polylgonToolButton" mnemonicParsing="false" onAction="#polygonToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER" toggleGroup="$g1">
+                                 <tooltip>
+                                    <Tooltip text="Polygon" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                                       <image>
+                                          <Image url="@assets/square.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                              <RadioButton fx:id="textRadioButton" mnemonicParsing="false" onAction="#textToolHandler" prefHeight="45.0" prefWidth="45.0" textAlignment="CENTER" toggleGroup="$g1">
+                                 <tooltip>
+                                    <Tooltip text="Text" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                                       <image>
+                                          <Image url="@assets/text.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <Label text="Shapes" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></Separator>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <ColorPicker fx:id="strokeColorPicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#strokeColorPickerHandler" prefHeight="45.0" prefWidth="90.0" styleClass="strokeColorPicker">
+                                       <value>
+                                          <Color />
+                                       </value>
+                                       <tooltip>
+                                          <Tooltip text="Stroke" />
+                                       </tooltip>
+                                    </ColorPicker>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <ColorPicker fx:id="fillColorPicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#fillColorPickerHandler" prefHeight="45.0" prefWidth="90.0" styleClass="fillColorPicker">
+                                       <value>
+                                          <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                       </value>
+                                       <tooltip>
+                                          <Tooltip text="Fill" />
+                                       </tooltip>
+                                    </ColorPicker>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <Label text="Colors" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></Separator>
+                  <VBox alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <ToggleButton fx:id="gridButton" mnemonicParsing="false" onAction="#gridHandler" prefHeight="45.0" prefWidth="45.0" styleClass="custom-button">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <tooltip>
+                                    <Tooltip text="Show/Hide grid" />
+                                 </tooltip>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/layout.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                              <HBox alignment="CENTER" prefHeight="45.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="Size [px]" textFill="WHITE" />
+                                    <Spinner fx:id="gridDensitySpinner" editable="true" prefWidth="80.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <Label text="Grid" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Separator>
+                  <VBox fx:id="textPropertiesSection" alignment="CENTER" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="45.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/text_.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="Size [px]" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="15.0" right="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Spinner fx:id="sizeTextSpinner" editable="true" prefWidth="80.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Spinner>
+                           </children>
+                        </HBox>
+                        <Label text="Text" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </items>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #373737;" BorderPane.alignment="CENTER">
+         <content>
+            <Group fx:id="wrapperGroup">
+               <children>
+                  <Pane fx:id="drawingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#mouseDraggedOnPane" onMousePressed="#mousePressedOnPane" onMouseReleased="#mouseReleasedOnPane" prefHeight="200.0" prefWidth="200.0" styleClass="drawing-pane">
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor></Pane>
+               </children>
+            </Group>
+         </content>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
+         </BorderPane.margin>
+      </ScrollPane>
+   </center>
+   <right>
+      <ScrollPane fx:id="propertiesSection" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #2e2e2e; -fx-border-color: #2e2e2e; -fx-border-width: 10; -fx-border-radius: 10;" BorderPane.alignment="CENTER">
+         <content>
+            <VBox alignment="TOP_CENTER" prefWidth="280.0" spacing="10.0" style="-fx-background-color: #2e2e2e;">
+               <children>
+                  <Label text="Shape inspector" textFill="WHITE" />
+                  <Separator>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Separator>
+                  <VBox alignment="TOP_CENTER" prefWidth="280.0" spacing="15.0">
+                     <children>
+                        <Label text="Resize [px]" textFill="WHITE" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefWidth="100.0" text="Width" textFill="WHITE" />
+                              <TextField fx:id="widthTextField" onKeyPressed="#updateSizes" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefWidth="100.0" text="Height" textFill="WHITE" />
+                              <TextField fx:id="heightTextField" onKeyPressed="#updateSizes" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="lockProportionsCB" mnemonicParsing="false" text="Lock Proportions" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+                  <Separator>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Separator>
+                  <VBox alignment="TOP_CENTER" prefWidth="280.0" spacing="15.0">
+                     <children>
+                        <Label text="Rotation [°]" textFill="WHITE" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/rotation.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="rotationSpinner" editable="true" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Separator>
+                  <VBox alignment="TOP_CENTER" prefWidth="280.0" spacing="15.0">
+                     <children>
+                        <Label text="Scale factor" textFill="WHITE" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/stretch-horizontal.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="horizontalStretchSpinner" editable="true" prefWidth="90.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/stretch-vertical.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="verticalStretchSpinner" editable="true" prefWidth="90.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" top="15.0" />
+               </padding>
+            </VBox>
+         </content>
+         <BorderPane.margin>
+            <Insets bottom="15.0" right="15.0" top="20.0" />
+         </BorderPane.margin>
+      </ScrollPane>
+   </right>
+   <bottom>
+      <VBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0">
+               <children>
+                   <Label fx:id="zoomLabel" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Label>
+                  <Label>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <graphic>
+                        <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3 5.91 3 3 5.91 3 9.5 3 13.09 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5 5 7.01 7.01 5 9.5 5 11.99 5 14 7.01 14 9.5c0 2.49-2.01 4.5-4.5 4.5ZM7 9h5v1H7Z" fill="WHITE" scaleX="1.8" scaleY="1.8" />
+                     </graphic>
+                  </Label>
+                  <Slider fx:id="zoomSlider" majorTickUnit="1.0" min="1.0" minorTickCount="0" snapToTicks="true" />
+                  <Label textFill="WHITE">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <graphic>
+                        <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3 5.91 3 3 5.91 3 9.5 3 13.09 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5Zm-6 0C7.01 14 5 11.99 5 9.5 5 7.01 7.01 5 9.5 5 11.99 5 14 7.01 14 9.5c0 2.49-2.01 4.5-4.5 4.5Z M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1Z" fill="WHITE" scaleX="1.8" scaleY="1.8" />
+                     </graphic>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets right="25.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+</BorderPane>

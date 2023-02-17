@@ -1,0 +1,179 @@
+.toolbar {
+    -fx-background-color: white;
+}
+
+.menu{
+    -fx-border-radius: 20;
+    -fx-background-radius: 5;
+}
+
+.menu:hover {
+    -fx-background-color: #454545;
+}
+
+.menu:hover:pressed {
+    -fx-background-color: #454545;
+}
+
+.menu-item:hover {
+    -fx-background-color: #454545;
+}
+
+.menu-item:focused {
+    -fx-background-color: #454545;
+}
+
+.menu-item:pressed:hover {
+    -fx-background-radius: 5;
+}
+
+.label{
+    -fx-text-fill: white;
+}
+
+.menu-item .label{
+    -fx-text-fill: #ffffff;
+}
+
+.menu{
+    -fx-text-fill: #ffffff;
+    -fx-base: white;
+}
+.context-menu {
+    -fx-background-color: #2e2e2e;
+    -fx-border-color: #2e2e2e;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #ffffff;
+}
+
+.drawing-pane {
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-border-width: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+#main-scroll-pane {
+    -fx-focus-traversable: true;
+    -fx-background-color: #EEEEEE; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color:  #2e2e2e;
+}
+
+scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color: #2e2e2e;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color:  #2e2e2e;
+    -fx-border-color:  #2e2e2e;
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track{
+    -fx-background-color:  #2e2e2e;
+    -fx-border-color:  #2e2e2e;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: #505050;
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color:  #2e2e2e;
+}
+
+.selection_rectangle {
+    -fx-fill: transparent;
+    -fx-stroke: skyblue;
+    -fx-stroke-width: 2.5;
+    -fx-stroke-dash-array: 2  7 7 2;
+    -fx-stroke-type: outside;
+}
+
+* {
+    -fx-font-family: 'Verdana';
+}
+
+.custom-button {
+    -fx-background-color: transparent;
+    -fx-focus-traversable: false;
+    -fx-background-radius: 3px;
+}
+
+.custom-button:pressed:hover {
+    -fx-cursor: CLOSED_HAND;
+}
+
+.custom-button:hover {
+    -fx-background-color: #454545;
+    -fx-cursor: hand;
+}
+
+.custom-button:selected{
+    -fx-background-color: #1e1e1e;
+    
+}
+
+.color-picker{
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-color-label-visible: false;
+}
+
+.color-picker:hover {
+    -fx-background-color: #454545;
+    -fx-cursor: hand;
+}
+
+.color-picker:pressed:hover {
+    -fx-cursor: CLOSED_HAND;
+}
+.color-picker .label {
+    -fx-background-size: 20 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-translate-x: 15;
+}
+
+.strokeColorPicker .label{
+    -fx-background-image: url("assets/pencil.png");
+}
+
+.fillColorPicker .label{
+    -fx-background-image: url("assets/bucket.png");
+}
+
+#textbox {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-color: skyblue;
+    -fx-border-width: 2.5;
+    -fx-border-style: dashed;
+}
+
+#textbox .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+/* The main scrollbar **track** CSS class  */
+#textbox .scroll-bar:horizontal .track,
+#textbox .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+	-fx-border-color:derive(gray,80%);
+ 
+	-fx-background-radius: 2em;
+	-fx-border-radius:2em;
+}
+
+#textbox .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+#textbox .scroll-pane .content{
+    -fx-background-color: transparent;
+}
